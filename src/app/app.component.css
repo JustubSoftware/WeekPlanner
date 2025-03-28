@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+  }
+  
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Mindestens die Höhe des Viewports */
+    background-color:  #ffffff;
+  }
+  
+  main {
+    flex: 1; /* Hauptinhalt füllt den freien Platz */
+    margin: 0rem;
+  }
+  
+  app-footer {
+    margin:1rem;
+    /* padding-top:1rem; */
+    /* background: #FFE5E7; */
+    text-align: center;
+  }
