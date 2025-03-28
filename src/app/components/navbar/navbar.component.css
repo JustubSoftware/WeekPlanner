@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+.navbar {
+  border-radius: 10px;;
+  margin-top:-.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom:1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e4c7bc;
+  padding: 10px 50px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-left .logo img {
+  height: 5rem;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: darkslategrey;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: ease 0.25s;
+}
+
+.navbar-center a:hover {
+  text-decoration: underline;
+}
+
+.navbar-right a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: darkslategrey;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 10px;
+  transition: all 0.25s;
+}
+
+.navbar-right a:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+  .navbar-center {
+    margin: 10px 0;
+  }
+  .navbar-right {
+    margin-top: 10px;
+  }
+}

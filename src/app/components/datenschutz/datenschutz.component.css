@@ -1,0 +1,99 @@
+/* Datenschutz Container */
+.datenschutz-container {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0; /* Gleiche Farbe wie im Impressum */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 100%;
+    margin: 1rem auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hauptüberschrift */
+.datenschutz-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Allgemeiner Abschnitts-Stil */
+.datenschutz-container section {
+    background-color: #f9e1e1; /* Gleiche hellere Alternative für bessere Lesbarkeit */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    min-height: 50px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Überschriften in den Sektionen */
+.datenschutz-container section h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* Allgemeine Textgestaltung */
+.datenschutz-container p {
+    font-size: 1rem;
+    color: darkslategray;
+    margin-bottom: 5px;
+    max-width: 100%;
+}
+
+/* Links */
+.datenschutz-container a {
+    color: #d86b6b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.datenschutz-container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .datenschutz-container {
+        padding: 15px;
+    }
+
+    .datenschutz-container h1 {
+        font-size: 1.7rem;
+    }
+
+    .datenschutz-container section {
+        padding: 12px;
+    }
+
+    .datenschutz-container section h2 {
+        font-size: 1.3rem;
+    }
+
+    .datenschutz-container p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .datenschutz-container {
+        padding: 10px;
+    }
+
+    .datenschutz-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .datenschutz-container section h2 {
+        font-size: 1.2rem;
+    }
+
+    .datenschutz-container p {
+        font-size: 0.9rem;
+    }
+}
