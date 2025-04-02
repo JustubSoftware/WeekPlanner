@@ -38,12 +38,20 @@ export class WeekPlannerComponent implements OnInit{
     const padding = 10;
     const pageHeight = doc.internal.pageSize.height;
 
+    const headerColor = '#2f4858'; // Originalfarbe für Header
+    const dayBoxColor = '#e4c7bc'; // Originalfarbe für Tagesboxen
+    const backgroundColor = '#FFE5E7'; // Originalfarbe für Hintergrund
+    const textColor = '#2f4858'; // Originalfarbe für Text
+    const notesBoxColor = '#e4c7bc'; // Originalfarbe für Notizenbox
+
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
+    doc.setTextColor(textColor);
     doc.text(`Wochenplan - KW ${this.week}`, padding, yOffset);
     yOffset += 10;
     
     doc.setFontSize(14);
+    doc.setTextColor(textColor);
     doc.text(`Kalenderwoche ${this.week}`, padding, yOffset);
     yOffset += 10;
 
@@ -61,6 +69,7 @@ export class WeekPlannerComponent implements OnInit{
 
       doc.setFont("helvetica", "bold");
       doc.setFontSize(14);
+      doc.setTextColor(textColor);
       doc.text(day, padding, yOffset);
       yOffset += 8;
 
@@ -72,9 +81,11 @@ export class WeekPlannerComponent implements OnInit{
         yOffset = 20;
       }
 
+      doc.setFillColor(...this.hexToRgbArray(dayBoxColor)); // Farbe der Tagesboxen
       doc.roundedRect(padding - 2, yOffset, 180, boxHeight, 5, 5, "F");
       doc.setFont("helvetica", "normal");
       doc.setFontSize(12);
+      doc.setTextColor(textColor);
       doc.text(textLines, padding + 3, yOffset + 7);
       yOffset += boxHeight + 10;
     });
@@ -88,6 +99,7 @@ export class WeekPlannerComponent implements OnInit{
 
       doc.setFont("helvetica", "bold");
       doc.setFontSize(14);
+      doc.setTextColor(textColor);
       doc.text("Zusätzliche Notizen", padding, yOffset);
       yOffset += 8;
 
@@ -99,16 +111,25 @@ export class WeekPlannerComponent implements OnInit{
         yOffset = 20;
       }
 
+      doc.setFillColor(...this.hexToRgbArray(notesBoxColor)); // Farbe der Notizenbox
       doc.roundedRect(padding - 2, yOffset, 180, boxHeight, 5, 5, "F");
       doc.setFont("helvetica", "normal");
       doc.setFontSize(12);
+      doc.setTextColor(textColor);
       doc.text(textLines, padding + 3, yOffset + 7);
       yOffset += boxHeight + 10;
     }
 
     doc.save("wochenplan.pdf");
   }
-  
+
+  // Hilfsmethode, um hex Farben in RGB umzuwandeln
+  hexToRgbArray(hex: string): [number, number, number] {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return [r, g, b]; // Gebe ein Tupel zurück
+  }
 
   adjustTextareaHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
@@ -155,12 +176,15 @@ export class WeekPlannerComponent implements OnInit{
     }
   }
 
-  saveWeekData() {
+  saveWeekData(): void {
     const weekKey = `week_${this.week}`;
     localStorage.setItem(weekKey, JSON.stringify(this.activities));
+
+    const notesKey = `notes_week_${this.week}`;
+    localStorage.setItem(notesKey, this.notes);
   }
   
-  loadWeekData() {
+  loadWeekData(): void {
     const weekKey = `week_${this.week}`;
     const savedData = localStorage.getItem(weekKey);
 
@@ -170,6 +194,16 @@ export class WeekPlannerComponent implements OnInit{
       this.activities = {
         Montag: '', Dienstag: '', Mittwoch: '', Donnerstag: '', Freitag: '', Samstag: '', Sonntag: ''
       };
+    }
+
+    // Laden der Notizen aus dem localStorage
+    const notesKey = `notes_week_${this.week}`;
+    const savedNotes = localStorage.getItem(notesKey);
+
+    if (savedNotes) {
+      this.notes = savedNotes;
+    } else {
+      this.notes = "";  // Setze leere Notizen, wenn nichts gespeichert wurde
     }
   }
 }
