@@ -1,32 +1,43 @@
 <div class="week-planner-container">
-    <div class="week-planner-header">
-      <h2>Wochenplan - KW {{ week }}</h2>
-    </div>
-    
-    <div class="week-planner-nav">
-        <button (click)="prevWeek()">
-          <i class="fa fa-chevron-left" style="color: #2f4858"></i> Vorherige Woche
-        </button>
-        <span>Kalenderwoche {{ week }}</span>
-        <button (click)="nextWeek()">
-          Nächste Woche <i class="fa fa-chevron-right" style="color:#2f4858"></i>
-        </button>
-      </div>
-    
-      <div class="week-planner-days">
-        <div *ngFor="let day of weekDays" class="day">
-          <h3>{{ day }}</h3>
-          <textarea
-            [(ngModel)]="activities[day]"
-            (input)="adjustTextareaHeight($event)" 
-            placeholder="Aktivitäten für diesen Tag">
-          </textarea>
-        </div>
-      </div>
-    
-    <div class="week-planner-buttons">
-      <button class="save-pdf" (click)="generatePDF()">📄 PDF speichern</button>
-      <button class="request-change" (click)="sendChangeRequestEmail()">📝 Änderungsantrag</button>
-      <button class="save-pdf" (click)="openMailWithText()">📧 PDF senden</button>
-    </div>
+  <div class="week-planner-header">
+    <h2>Wochenplan - KW {{ week }}</h2>
   </div>
+
+  <div class="week-planner-nav">
+      <button (click)="prevWeek()">
+        <i class="fa fa-chevron-left" style="color: #2f4858"></i> Vorherige Woche
+      </button>
+      <span>Kalenderwoche {{ week }}</span>
+      <button (click)="nextWeek()">
+        Nächste Woche <i class="fa fa-chevron-right" style="color:#2f4858"></i>
+      </button>
+  </div>
+
+  <div class="week-planner-content">
+      <!-- Aktivitäten für die Wochentage -->
+      <div class="week-planner-days">
+          <div *ngFor="let day of weekDays" class="day">
+              <h3>{{ day }}</h3>
+              <textarea [(ngModel)]="activities[day]"
+                        (input)="adjustTextareaHeight($event)"
+                        placeholder="Aktivitäten für diesen Tag">
+              </textarea>
+          </div>
+      </div>
+
+      <!-- Notizbereich -->
+      <div class="notes-section">
+          <h3>Zusätzliche Notizen</h3>
+          <textarea [(ngModel)]="notes" 
+                    (input)="saveWeekData()" 
+                    placeholder="Hier zusätzliche Notizen eingeben...">
+          </textarea>
+      </div>
+  </div>
+
+  <div class="week-planner-buttons">
+    <button class="save-pdf" (click)="generatePDF()">📄 PDF speichern</button>
+    <button class="request-change" (click)="sendChangeRequestEmail()">📝 Änderungsantrag</button>
+    <button class="save-pdf" (click)="openMailWithText()">📧 PDF senden</button>
+  </div>
+</div>
